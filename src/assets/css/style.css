@@ -1,0 +1,108 @@
+html{
+    background-color:#f8f9fa !important;
+}
+
+
+
+.wedevs_product_grid
+{
+    background: #fff;
+    box-shadow: 0 40px 70px 0 rgb(0 0 0 / 5%);
+    border-radius: 5px;
+    text-align: center;
+    padding: 40px 30px 30px;
+    width: 350px;
+    transform: translateY(0);
+    transition: transform .25s ease;
+    height: 320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,0),#fff);
+    background-color: transparent;
+}
+.wedevs_product_grid p{
+    opacity: .9;
+    font-size: 18px;
+    color: #4f5b6d;
+    letter-spacing: .16px;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 5px;
+    padding: 0 20px;
+}
+.products_grid .col-sm-4:nth-child(3n+2) {
+    position: relative;
+    margin-top: -60px !important;
+}
+
+.product_price{
+    color: #23b89a;
+    font-weight: bold;
+    font-size: 20px;
+}
+.custom-form-control{
+    border-radius: 15px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.auth_card{
+
+    max-width: 350px;
+    padding: 50px;
+    background: #fff;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: 15px;
+}
+.auth_card h4, .vue-card-title
+{   
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #23b89a;
+    margin-bottom: 1rem;
+}
+.background-auth{
+    background-image: url('/images/auth-background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 350px;
+    opacity: 0.5;
+
+}
+.router-link-active {
+    color: #23b89a !important;
+}
+.nav-link{
+    font-weight: 600 !important;
+}
+.product-image-display{
+    width: 350px;
+}
+.product-image-display img{
+    width:100%;
+    max-height: 350px;
+    background-size: cover;
+}
+.product-form-card{
+    width: 400px;
+    margin-left: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+.fit-image{
+    max-height: 100px;
+    position: relative;
+    object-fit: cover;
+}
+.Pagination {
+    justify-content:center;
+}
+.Page-active{
+    background-color: rgb(35 184 154) !important;
+    color: #fff !important;
+}
