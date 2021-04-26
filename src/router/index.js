@@ -55,7 +55,7 @@ const routes = [
         name: 'Product Create',
         component: () => import('../views/products/ProductCreate.vue'),
         meta: { 
-            requiresAuth: true
+            isAdmin: true
         }
     },
     {
@@ -63,7 +63,7 @@ const routes = [
         name: 'ProductEdit',
         component: () => import('../views/products/ProductEdit.vue'),
         meta: { 
-            requiresAuth: true
+            isAdmin: true
         }
     }
 ]
@@ -75,11 +75,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(store.getters.isAdmin)
+    console.log(localStorage.getItem('user'));
+  //const user = localStorage.getItem('user') 
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn && localStorage.getItem('token') != null) {
-      next()
-      return
+      next(); return;
     }
     next('/login') 
   } else {
