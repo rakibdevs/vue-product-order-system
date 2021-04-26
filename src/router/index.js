@@ -75,16 +75,26 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log(localStorage.getItem('user'));
-  //const user = localStorage.getItem('user') 
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isLoggedIn && localStorage.getItem('token') != null) {
-      next(); return;
-    }
-    next('/login') 
-  } else {
-    next() 
-  }
+    
+    const token = localStorage.getItem('token')
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.getters.isLoggedIn && token != null) {
+            next(); return;
+        }
+        next('/login') 
+    }else if(to.matched.some(record => record.meta.isAdmin)){
+        if (store.getters.isAdmin && token != null) {
+            next(); return;
+        }
+        router.back();
+    }else if(to.matched.some(record => record.meta.isCustomer)){
+        if (store.getters.isCustomer && token != null) {
+            next(); return;
+        }
+        router.back();
+    }else {
+        next() 
+    } 
 })
 
 // Add a request interceptor
