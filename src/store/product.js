@@ -57,24 +57,24 @@ const actions = {
 
     async fetchMyProducts({ commit }, query = null) {
         let page    = (query !== null)?query.page:'',
-            search  = (query !== null)?query.search:'',
+            /*search  = (query !== null)?query.search:'',*/
             baseApi = process.env.VUE_APP_API_ENDPOINT;
 
         commit('product_loading', true);
-        let url = (search === '')?(`${baseApi}products/?page=${page}`):(`${baseApi}product/search-my-store?keyword=${search}`);
+        let url = (`${baseApi}products/?page=${page}`);
 
         await axios.get(url)
             .then(res => {
-                const products = res.data.data.data;
+                const products = res.data.data;
                 commit('setProducts', products);
                 const pagination = {
-                    total: res.data.data.total,  
-                    per_page: res.data.data.per_page, 
-                    current_page: res.data.data.current_page, 
-                    total_pages: res.data.data.last_page 
+                    total: 2,  
+                    per_page: 10, 
+                    current_page:1, 
+                    total_pages: 1 
                 }
-                res.data.data.pagination = pagination;
-                commit('setProductsPaginated', res.data.data);
+                res.data.pagination = pagination;
+                commit('setProductsPaginated', res.data);
                 commit('product_loading', false);
             }).catch(err => {
                 console.log('error', err);
@@ -104,7 +104,7 @@ const actions = {
         data.append('title', product.title);
         data.append('price', product.price);
         commit('product_creating', true);
-        await axios.post(`${process.env.VUE_APP_API_ENDPOINT}products`, data)
+        await axios.post(`${process.env.VUE_APP_API_ENDPOINT}products/store`, data)
             .then(res => {
                 commit('save_new_product', res.data.data);
                 commit('product_creating', false);
@@ -123,7 +123,7 @@ const actions = {
         data.append('title', product.title);
         data.append('price', product.price);
         commit('product_updating', true);
-        await axios.post(`${process.env.VUE_APP_API_ENDPOINT}products/${product.id}?_method=PUT`, data)
+        await axios.post(`${process.env.VUE_APP_API_ENDPOINT}products/${product.id}/update`, data)
             .then(res => {
                 commit('update_product', res.data.data);
                 commit('product_updating', false);

@@ -8,6 +8,7 @@
             <span class="product_price"> $ {{ product.price}}</span> 
             <a href="" :title="`See about ${ product.title }`" class="text-wpuf"> See more →
             </a>
+            <button class="btn btn-sm btn-danger" @click="addToCart(product.id)">Add to Cart</button>
         </div>
     </div>
 </template>
