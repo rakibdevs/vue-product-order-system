@@ -1,7 +1,7 @@
 <template>
     <td>{{ index + 1 }}</td>
     <td class="text-center">
-      <img v-if="product.image" loading="lazy" :src="product.image" :alt="product.title" width="50"  >
+      <img v-if="product.image" loading="lazy" :src="baseUrl+product.image" :alt="product.title" width="50"  >
     </td>
     <td>{{ product.title }}</td>
     <td class="text-center">
@@ -33,6 +33,11 @@ export default {
     index: {
       type: Number,
     },
+  },
+  data: function() {
+    return {
+      baseUrl: process.env.VUE_APP_API_ENDPOINT,
+    }
   },
 
   computed: { ...mapGetters(["isDeleting", "deletedData"]) },

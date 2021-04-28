@@ -71,6 +71,20 @@ body{
     text-shadow: 0 2px 3px rgb(0 0 0 / 18%);
     transition: all .25s;
 }
+.btn_checkout {
+    color: #fff;
+    background: #ff2c5d;
+    padding: 5px 25px;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 15px;
+    text-shadow: 0 2px 3px rgb(0 0 0 / 18%);
+    transition: all .25s;
+    position: absolute;
+    bottom: 20px;
+    width: 80%;
+    left: 10%;
+}
 .shopping-cart {
     background: #fff;
     box-shadow: 0 22px 79px 0 rgb(0 0 0 / 11%);
@@ -93,39 +107,49 @@ body{
     letter-spacing: .23px;
     text-transform: uppercase;
 }
-/*.wedevs_product_grid
-{
+.relative{position: relative;}
+.flex{display: flex;}
+.one-third{
+    width: 33.33333%;
+}
+.percent-10{width: 10%;}
+.percent-20{width: 20%;}
+.percent-30{width: 30%;}
+.percent-40{width: 40%;}
+.percent-50{width: 50%;}
+.percent-60{width: 60%;}
+.percent-70{width: 70%;}
+.cart-item img{height: 40px;width: 40px;object-fit: cover;margin: 5px;}
+.cart{position: fixed;top: 60px;right: 20%;}
+.cart .cart-items{
+    display: none;
+    width: 700px;
     background: #fff;
-    box-shadow: 0 40px 70px 0 rgb(0 0 0 / 5%);
+    padding: 20px;
     border-radius: 5px;
-    text-align: center;
-    padding: 40px 30px 30px;
-    width: 350px;
-    transform: translateY(0);
-    transition: transform .25s ease;
-    height: 320px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    background-image: linear-gradient(180deg,hsla(0,0%,100%,0),#fff);
-    background-color: transparent;
+    position: absolute;
+    right: 0;
+    box-shadow: 2px 2px 10px 5px #d1d1d1;
 }
-.wedevs_product_grid p{
-    opacity: .9;
-    font-size: 18px;
-    color: #4f5b6d;
-    letter-spacing: .16px;
-    text-align: center;
-    line-height: 30px;
-    margin-bottom: 5px;
-    padding: 0 20px;
+.remove-cart-item{
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    color: red;
+    cursor: pointer;
 }
-.products_grid .col-sm-4:nth-child(3n+2) {
+.products_grid .col-sm-4{
+    margin-bottom: 60px;
+}
+.cart .cart-items.show-items{display: flex;}
+.cart-item td{border-bottom: 1px solid #e8e7e7;}
+.cart-items {min-height: 350px;}
+.checkout-second{
+    width: 30%;
+    background: #040c35;
+    border-radius: 5px;
     position: relative;
-    margin-top: -60px !important;
-}*/
-
+}
 .product_price{
     color: #23b89a;
     font-weight: bold;

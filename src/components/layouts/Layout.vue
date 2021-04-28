@@ -4,7 +4,9 @@
     <div class="main-content">
       <div class="container mt-3">
           <router-view />
-          <cart></cart>
+          <div v-if="isCustomer">
+            <cart></cart>
+          </div>
       </div>
     </div>
     <Footer />
@@ -25,5 +27,16 @@ export default {
     Footer,
     Cart
   },
+  computed : {
+      isLoggedIn : function(){ 
+          return this.$store.getters.isLoggedIn
+      },
+      isAdmin : function(){ 
+          return this.$store.getters.isAdmin
+      },
+      isCustomer : function(){ 
+          return this.$store.getters.isCustomer
+      }
+  }
 };
 </script>

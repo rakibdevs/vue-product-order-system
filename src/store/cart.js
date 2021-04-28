@@ -18,8 +18,7 @@ const getters = {
 
 const actions = {
     addItem(context, product) {
-            context.commit("add_item", product);
-        
+        context.commit("add_item", product);   
     },
     removeItem(context, index) {
         context.commit("remove_item", index);
@@ -34,6 +33,7 @@ const actions = {
 // mutations
 const mutations = {
     add_item(state, product) {
+        localStorage.removeItem('cart')
          if(state.cart.find(data => data.id === product.id)){     
             alert('ALready exists in the cart')
         }else{
@@ -45,13 +45,12 @@ const mutations = {
                 qty: 1
             }
             state.cart.push(item);
-
-            localStorage.setItem('cart',JSON.stringify(state.cart));
-            
+            localStorage.setItem('cart',JSON.stringify(state.cart));      
         }
     },
     remove_item(state, index) {
         state.cart.splice(index, 1);
+        localStorage.setItem('cart',JSON.stringify(state.cart));
     },
 
 }
