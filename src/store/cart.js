@@ -45,7 +45,7 @@ const mutations = {
                 qty: 1
             }
             state.cart.push(item);
-            //localStorage.removeItem('cart')
+
             localStorage.setItem('cart',JSON.stringify(state.cart));
             
         }

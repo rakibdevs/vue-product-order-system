@@ -3,7 +3,8 @@
     <Header />
     <div class="main-content">
       <div class="container mt-3">
-            <router-view />
+          <router-view />
+          <cart></cart>
       </div>
     </div>
     <Footer />
@@ -13,6 +14,7 @@
 <script>
 import Footer from "./Footer";
 import Header from "./Header";
+import Cart from '../order/CartComponent'
 export default {
   name: "Layout",
   props: {
@@ -21,6 +23,7 @@ export default {
   components: {
     Header,
     Footer,
+    Cart
   },
 };
 </script>
