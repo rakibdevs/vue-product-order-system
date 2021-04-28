@@ -1,9 +1,10 @@
 <template>
     <div class="cart">
         <div class="shopping-cart" @click="active = !active" :aria-pressed="active ? 'true' : 'false'">
-            <div class="cart-summary">
-                <span>{{ cartCount }} </span> Items
-                <p>$ <span>{{cartPrice}}</span></p>
+            <div class="cart-summary small text-center">
+                <img class="mt-2" :src="`/images/cart.svg`">
+                <p class="mb-0 pb-2 items-count">{{ cartCount }}  ITEMS </p>
+                <p class="theme-color"><sup>$</sup> <span class="items-price">{{cartPrice}}</span></p>
             </div>
             
         </div>

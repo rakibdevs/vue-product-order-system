@@ -1,6 +1,14 @@
 <template>
   <div class="home">
-      <product-list-component></product-list-component>
+        <div class="product-background">
+            <h1>
+                <span style="color: rgb(134 194 60);font-size: 35px;">Our Journey</span> So Far
+            </h1>
+        </div>
+            
+      <div class="product-container">
+            <product-list-component></product-list-component>
+      </div>
   </div>
 </template>
 

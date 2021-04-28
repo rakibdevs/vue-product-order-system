@@ -1,5 +1,5 @@
 <template>
-  <div id="layout " class="bg-light">
+  <div id="layout" class="bg-light " :class="getRouteName">
     <Header />
     <div class="main-content">
       <div class="container mt-3">
@@ -36,6 +36,9 @@ export default {
       },
       isCustomer : function(){ 
           return this.$store.getters.isCustomer
+      },
+      getRouteName() {
+        return this.$route.name;
       }
   }
 };

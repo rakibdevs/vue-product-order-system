@@ -1,18 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-center mt-2 mb-2">
-      <div class="col-10">
-          
-      </div>
-      <div class="col-2 ">
-        <input
-          type="text"
-          class="form-control custom-form-control"
-          placeholder="Search Products..."
-          @input="searchProducts"
-          v-model="query.search"
-        />
-      </div>
+     
     </div>
     <div class="">
       <div class="row products_grid" v-if="!isLoading">
