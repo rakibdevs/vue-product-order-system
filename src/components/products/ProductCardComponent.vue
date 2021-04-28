@@ -1,15 +1,18 @@
 <template>
-    <div class="wedevs_product_grid_wrapper">
-        <div class="wedevs_product_grid">
-            <a href="" class="" >
-                <img class="fit-image" loading="lazy" :src="product.image" :alt="product.title" width="150" >
-            </a> 
-            <p> {{ product.description}}</p> 
-            <span class="product_price"> $ {{ product.price}}</span> 
-            <a href="" :title="`See about ${ product.title }`" class="text-wpuf"> See more →
-            </a>
-            <button class="btn btn-sm btn-danger" @click="addToCart(product.id)">Add to Cart</button>
-        </div>
+    <div class="coupon__product_single">
+        <img :src="baseUrl+product.image" :alt="product.title" loading="lazy" class="cp__product_logo"> 
+        <h2 >{{ product.title }}</h2> 
+        <p data-v-010f70f6="">{{ product.description}}</p> 
+        <div class="couopn__pricing_tag">
+            <span  class="price">
+                <sup data-v-010f70f6="">$</sup> 
+                <span >
+                    {{ product.price}}
+                    <span class="starting__text">/y</span>
+                </span>
+            </span>
+        </div> 
+        <button class="btn btn-sm claim__offer_btn" @click="addToCart(product)">Add to Cart</button>
     </div>
 </template>
 
@@ -26,11 +29,19 @@ export default {
       type: Number,
     },
   },
-
-  computed: { ...mapGetters(["isDeleting", "deletedData"]) },
-
+  data: function() {
+    return {
+      baseUrl: process.env.VUE_APP_API_ENDPOINT,
+    }
+  },
+  computed: { 
+    ...mapGetters(["isDeleting", "deletedData"]) 
+  },
   methods: {
     ...mapActions(["deleteProduct", "fetchAllProducts"]),
+    addToCart(id) {
+      this.$store.dispatch("addItem", id);
+    },
     deleteProductModal(id) {
       this.$swal
         .fire({

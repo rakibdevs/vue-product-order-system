@@ -5,12 +5,12 @@
                 <img :src="`/images/weDevs-color-logo.png`" height="35"> | Products
             </router-link>
             <div class="navbar-nav">
-                <li class="nav-item" v-if="isLoggedIn">
+                <li class="nav-item" v-if="isAdmin">
                     <router-link  to="/products" class="nav-link">
                         Products 
                     </router-link>
                 </li>
-                <li class="nav-item" v-if="isLoggedIn">
+                <li class="nav-item" v-if="isAdmin">
                     <router-link to="/products/create" class="nav-link">
                         Add Product
                     </router-link>
@@ -41,6 +41,12 @@ export default {
     computed : {
         isLoggedIn : function(){ 
             return this.$store.getters.isLoggedIn
+        },
+        isAdmin : function(){ 
+            return this.$store.getters.isAdmin
+        },
+        isCustomer : function(){ 
+            return this.$store.getters.isCustomer
         }
     }
 };

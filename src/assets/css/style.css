@@ -1,10 +1,77 @@
 html{
     background-color:#f8f9fa !important;
+
+}
+body{
+    font-family: Lato,sans-serif !important;
 }
 
-
-
-.wedevs_product_grid
+.product__single_box {
+    margin-bottom: 103px;
+}
+.coupon__product_single {
+    position: relative;
+    background: #fff;
+    border: 1px solid #f9f9f9;
+    box-shadow: 0 70px 70px 0 rgb(0 0 0 / 11%);
+    border-radius: 3px;
+    padding: 81px 50px 40px;
+    max-width: 337px;
+    margin: 0 auto;
+}
+.coupon__product_single .cp__product_logo {
+    position: absolute;
+    top: -45px;
+    left: 50px;
+}
+.coupon__product_single h2 {
+    font-weight: 900;
+    font-size: 26px;
+    color: #000;
+    line-height: 1.167em;
+    margin-bottom: 11px;
+    margin-top: 0;
+}
+.coupon__product_single p {
+    color: #4f5b6d;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: .16px;
+    margin-bottom: 20px;
+    opacity: .9;
+}
+.coupon__product_single .couopn__pricing_tag{
+    margin-bottom: 20px;
+    margin-right: -25px;
+}
+.coupon__product_single .couopn__pricing_tag .price{
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+}
+.coupon__product_single .couopn__pricing_tag sup {
+    font-weight: 700;
+    font-size: 24px;
+}
+.coupon__product_single .couopn__pricing_tag .starting__text{
+    font-size: 14px;
+    color: #677181;
+    font-weight: 400;
+}
+.coupon__product_single .couopn__pricing_tag .price, .cp__product_wrapper .coupon__product_single .couopn__pricing_tag sup {
+    color: #ff2c5d;
+}
+.coupon__product_single .claim__offer_btn {
+    color: #fff;
+    background: #ff2c5d;
+    padding: 5px 25px;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 15px;
+    text-shadow: 0 2px 3px rgb(0 0 0 / 18%);
+    transition: all .25s;
+}
+/*.wedevs_product_grid
 {
     background: #fff;
     box-shadow: 0 40px 70px 0 rgb(0 0 0 / 5%);
@@ -35,7 +102,7 @@ html{
 .products_grid .col-sm-4:nth-child(3n+2) {
     position: relative;
     margin-top: -60px !important;
-}
+}*/
 
 .product_price{
     color: #23b89a;

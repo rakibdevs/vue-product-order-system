@@ -47,7 +47,7 @@ const routes = [
         name: 'Products',
         component: () => import('../views/products/ProductList.vue'),
         meta: { 
-            requiresAuth: true
+            isAdmin: true
         }
     },
     {
