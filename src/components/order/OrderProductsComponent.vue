@@ -1,17 +1,10 @@
 <template>
-    <div class="cart">
-        <div  class="shopping-cart" @click="active = !active" :aria-pressed="active ? 'true' : 'false'">
-            <div class="cart-summary small text-center">
-                <img class="mt-2" :src="`/images/cart.svg`">
-                <p class="mb-0 pb-2 items-count">{{ cartCount }}  ITEMS </p>
-                <p class="theme-color"><sup>$</sup> <span class="items-price">{{cartPrice}}</span></p>
-            </div>
-        </div>
-        <div v-if="cartCount > 0 " class="cart-items flex" :class="{ 'show-items': active } ">
+    <div class="cart" >
+        <div class="cart-items flex" :class="{ 'show-items': active } ">
             <div class="percent-70">
                 <strong>Shopping Cart</strong>
                 <table border="0" width="100%" class="mt-1">
-                    <tr class="cart-item"  v-for="(item, index) in storeCart" :key="index">
+                    <tr class="cart-item"  v-for="(item, index) in order_product" :key="index">
                         <td class="percent-20"><img :src="baseUrl+item.image" :alt="item.title" loading="lazy" ></td>
                         <td class="percent-60">{{ item.title}}</td>
                         <td class="percent-20 text-right pr-5 relative">
@@ -36,40 +29,22 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+
 export default {
-    name: "Cart",
+    name: "OrderProduct",
+    props: {
+        order_product: { type: Object },
+        order: { type: Object },
+        active: { type: Boolean },
+    },
     data:function() {
         return {
-          baseUrl: process.env.VUE_APP_API_ENDPOINT,
-          active: false
-        }
-      },
-    computed: {
-        storeCart() {
-            return this.$store.getters.cart;
-        },
-        cartCount() {
-            return this.storeCart.length;
-        },
-        cartPrice(){
-            if (!this.storeCart) {
-                return 0;
-            }
-
-            return this.storeCart.reduce(function (total, v) {
-                return total + Number(v.price);
-            }, 0);
+            baseUrl: process.env.VUE_APP_API_ENDPOINT,
+            cartPrice : this.order.price
         }
     },
     methods: {
-        ...mapActions(["removeItem","placeOrder"]),
-        place(amount){
-            this.placeOrder(amount);
-        },
-        hideCart(){
-            this.active = false;
-            this.$router.push({name: 'Home'})
-        }
+        ...mapActions(["updateStatus"])
     },
     watch: {
         createdData: function () {
@@ -80,8 +55,6 @@ export default {
                     position: "top-end",
                     timer: 1000,
             });
-
-        //this.$router.push({ name: "Products" });
       }
     },
   },

@@ -73,6 +73,14 @@ const routes = [
         meta: { 
             isCustomer: true
         }
+    },
+    {
+        path: '/orders',
+        name: 'Orders',
+        component: () => import('../views/orders/Orders.vue'),
+        meta: { 
+            isAdmin: true
+        }
     }
 ]
 
@@ -126,6 +134,7 @@ axios.interceptors.response.use((response) => {
         localStorage.removeItem('token');
         localStorage.removeItem('cart');
         localStorage.removeItem('user')
+        localStorage.removeItem('role')
         router.push({ name: 'login' })
     }
     return Promise.reject(error);

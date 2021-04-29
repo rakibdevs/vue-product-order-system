@@ -257,3 +257,9 @@ body{
     background-color: rgb(35 184 154) !important;
     color: #fff !important;
 }
+li.order-list-item{
+    padding: 7px 30px;
+    background: #fff;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}

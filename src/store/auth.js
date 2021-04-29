@@ -93,7 +93,7 @@ export default {
                 localStorage.removeItem('token')
                 localStorage.removeItem('user')
                 localStorage.removeItem('cart')
-                localStorage.setItem('role')
+                localStorage.removeItem('role')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
                 router.push({name: 'Home'})

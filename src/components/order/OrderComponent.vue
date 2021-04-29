@@ -1,33 +1,34 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center mt-2 mb-2">
-      <div class="col-10">
+    <div class="container">
         <h5 class="text-left mb-2">My Orders</h5>
-      </div>
-    </div>
-    <div class="row" >
-        <div class="col-sm-12">
-          <table class="table table-bordered  table-striped " style="width:100%">
-              <thead>
-                <tr class="text-center">
-                  <th>Sl</th>
-                  <th>Image</th>
-                  <th>Item Name</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr v-for="(item, index) in orders" :key="item.id">
-                      <td>{{index}}</td>
-                  </tr>
-              </tbody>
-          </table>
-    </div>
+        <div class="row" >
+            <div class="col-sm-3">
+                
+            </div>
+            <div class="col-sm-9">
+                <ul>
+                    <li v-for="(item) in orders" :key="item.id" class="flex order-list-item">
+                        <span class="percent-40">
+                            <strong>{{item.order_code}}</strong>
 
+                        </span>
+                        <span class="percent-30 small">
+                            {{item.created_at}}
+                        </span>
+                        <span class="percent-20">
+                            <span v-if="item.status == 'Delivered'" class="badge badge-success">Delivered</span>
+                            <span v-if="item.status == 'Shipped'" class="badge badge-warning">Shipped</span>
+                            <span v-if="item.status == 'Processing'" class="badge badge-danger">Processing</span>
+                        </span>
+                        <span class="percent-10 text-right">
+                            <sup>$</sup> {{item.amount}}
+                        </span>
+                    </li>
+                </ul>
+            </div>     
+        </div>
+        
     </div>
-
-  </div>
 </template>
 
 <script>

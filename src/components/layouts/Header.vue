@@ -20,6 +20,11 @@
                         Orders
                     </router-link>
                 </li>
+                <li class="nav-item" v-if="isAdmin">
+                    <router-link to="/orders/" class="nav-link">
+                        Orders 
+                    </router-link>
+                </li>
                 <li class="nav-item" v-if="!isLoggedIn" >
                     <router-link to="/login" class="nav-link">
                         Login

@@ -7,14 +7,21 @@ const state = () => ({
     cart       : JSON.parse(localStorage.getItem('cart'))||[],
     orderCreating  : false,
     orders : [],
-    total: 0
+    total: 0,
+    ordersPaginatedData   : [],
+    orderProducts: [],
+    order: []
 })
 
 const getters = {
     products: (state) => state.products,
     cart:     (state) => state.cart,
     orders : (state) => state.orders,
-    orderCreating : state => state.orderCreating
+    orderCreating : state => state.orderCreating,
+    orderList             : state => state.orders,
+    ordersPaginatedData   : state => state.ordersPaginatedData,
+    order : state => state.order,
+    orderProducts : state => state.orderProducts
 };
 
 
@@ -52,7 +59,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios.post(`${process.env.VUE_APP_API_ENDPOINT}myorders`)
             .then(resp => {
-                console.log(resp.data.data)
                 commit('my_orders', resp.data.data)
                 resolve(resp)
 
@@ -63,6 +69,35 @@ const actions = {
             })
         })
     },  
+    fetchOrders({commit}, query = null){
+        let page    = (query !== null)?query.page:'';
+
+        axios.get(`${process.env.VUE_APP_API_ENDPOINT}orders/?page=${page}`)
+        .then(resp => {
+            const orders = resp.data.data;
+            commit('set_orders', orders);
+            const pagination = {
+                total: 2,  
+                per_page: 10, 
+                current_page:1, 
+                total_pages: 1 
+            }
+            resp.data.pagination = pagination;
+            
+            commit('set_order_paginated', resp.data);
+        }).catch(err => {
+            console.log('error', err);
+        });
+    },
+    getOrderProducts({commit}, id){
+        axios.get(`${process.env.VUE_APP_API_ENDPOINT}orders/${id}`)
+        .then(resp => {
+            const orders = resp.data.data;
+            commit('set_orders_poducts', orders);
+        }).catch(err => {
+            console.log('error', err);
+        });
+    }
 }
 
 // mutations
@@ -100,6 +135,16 @@ const mutations = {
     },
     my_orders(state, orders){
         state.orders = orders;
+    },
+    set_orders(state, orders){
+        state.orders = orders;
+    },
+    set_order_paginated(state, paginatedData){
+        state.ordersPaginatedData = paginatedData;
+    },
+    set_orders_poducts(state, order){
+        state.order = order
+        state.orderProducts = []
     }
 
 }
