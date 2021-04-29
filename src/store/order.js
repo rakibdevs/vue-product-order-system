@@ -92,12 +92,23 @@ const actions = {
     getOrderProducts({commit}, id){
         axios.get(`${process.env.VUE_APP_API_ENDPOINT}orders/${id}`)
         .then(resp => {
-            const orders = resp.data.data;
-            commit('set_orders_poducts', orders);
+            const order = resp.data.data;
+            commit('set_orders_poducts', order);
         }).catch(err => {
             console.log('error', err);
         });
-    }
+    },
+    setOrderStatus({commit}, data){
+        
+        console.log(data);
+        axios.post(`${process.env.VUE_APP_API_ENDPOINT}orders/${data.id}/update`,data)
+        .then(resp => {
+            commit('set_orders_status', data);
+            console.log(resp)
+        }).catch(err => {
+            console.log('error', err);
+        });
+    },
 }
 
 // mutations
@@ -143,8 +154,19 @@ const mutations = {
         state.ordersPaginatedData = paginatedData;
     },
     set_orders_poducts(state, order){
-        state.order = order
-        state.orderProducts = []
+        state.order = order.order
+        state.orderProducts = order.products
+    },
+    set_orders_status(state,data){
+        state.order.status = data.status;
+        let items = state.orders;
+        console.log(state.orderProducts)
+        items.forEach((element, index) => {
+            if(element.id === data.id) {
+                items[index].status = data.status;
+            }
+        });
+        state.orders = items
     }
 
 }

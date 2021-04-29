@@ -263,3 +263,10 @@ li.order-list-item{
     border-radius: 15px;
     margin-bottom: 5px;
 }
+.order-step .fa.st{
+    display: block;
+    margin: 20px 10px;
+    font-size: 40px;
+    color: #fff;
+}
+.delivery-status-active{color: #04cc04 !important}
