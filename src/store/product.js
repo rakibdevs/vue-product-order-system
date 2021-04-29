@@ -37,7 +37,6 @@ const actions = {
 
         await axios.get(url)
             .then(res => {
-                console.log(res.data)
                 const products = res.data;
                 commit('setProducts', products);
                 const pagination = {

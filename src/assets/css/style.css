@@ -20,6 +20,7 @@ body{
 .product__single_box {
     margin-bottom: 103px;
 }
+.cursor{cursor: pointer;}
 .coupon__product_single {
     position: relative;
     background: #fff;

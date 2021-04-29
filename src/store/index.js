@@ -2,7 +2,7 @@
 import { createStore, createLogger } from 'vuex';
 import product from './product';
 import auth from './auth';
-import cart from './cart';
+import cart from './order';
 
 const debug = process.env.NODE_ENV !== 'production'
 

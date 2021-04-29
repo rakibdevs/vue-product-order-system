@@ -65,6 +65,14 @@ const routes = [
         meta: { 
             isAdmin: true
         }
+    },
+    {
+        path: '/my-orders',
+        name: 'MyOrders',
+        component: () => import('../views/orders/MyOrders.vue'),
+        meta: { 
+            isCustomer: true
+        }
     }
 ]
 
@@ -109,11 +117,15 @@ error => {
     Promise.reject(error)
 });
 
+
 //Add a response interceptor
 axios.interceptors.response.use((response) => {
     return response
 }, function(error) {
     if (error.response.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('cart');
+        localStorage.removeItem('user')
         router.push({ name: 'login' })
     }
     return Promise.reject(error);

@@ -16,7 +16,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item" v-if="isCustomer">
-                    <router-link to="/orders/" class="nav-link">
+                    <router-link to="/my-orders/" class="nav-link">
                         Orders
                     </router-link>
                 </li>

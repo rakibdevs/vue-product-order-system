@@ -11,7 +11,9 @@ export default {
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user : JSON.parse(localStorage.getItem('user')) 
+        user : JSON.parse(localStorage.getItem('user')),
+        role : localStorage.getItem('role') || ''
+
     },
     mutations: {
         auth_request(state){
@@ -21,6 +23,7 @@ export default {
             state.status = 'success'
             state.token = user.access_token
             state.user = user
+            state.role = user.role
         },
         auth_error(state){
             state.status = 'error'
@@ -29,6 +32,7 @@ export default {
             state.status = ''
             state.token = ''
             state.user = ''
+            state.role = ''
         },
     },
     actions: {
@@ -41,11 +45,16 @@ export default {
                     const user = resp.data.data
                     localStorage.setItem('token', token)
                     localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('role', user.role)
                     // Add the following line:
                     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
                     commit('auth_success', user)
                     resolve(resp)
-                    router.push({name: 'Products'})
+                    if(user.role == 'admin'){
+                        router.push({name: 'Products'})
+                    }else{
+                        router.push({name: 'Home'})
+                    }
                 })
                 .catch(err => {
                     commit('auth_error')
@@ -63,6 +72,7 @@ export default {
                     const user = resp.data.data
                     localStorage.setItem('token', token)
                     localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('role', user.role)
                     // Add the following line:
                     axios.defaults.headers.common['Authorization'] = 'bearer' +token;
                     commit('auth_success', user)
@@ -82,6 +92,8 @@ export default {
                 commit('logout')
                 localStorage.removeItem('token')
                 localStorage.removeItem('user')
+                localStorage.removeItem('cart')
+                localStorage.setItem('role')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
                 router.push({name: 'Home'})
@@ -92,7 +104,7 @@ export default {
     getters : {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.status,
-        isAdmin: state => state.user.role == 'admin',
-        isCustomer: state => state.user.role == 'customer'
+        isAdmin: state =>  state.role == 'admin',
+        isCustomer: state =>  state.role == 'customer'
     }
 }

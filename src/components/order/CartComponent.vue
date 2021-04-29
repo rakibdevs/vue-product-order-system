@@ -23,13 +23,14 @@
                     </tr>
                 </table>
                 <div class="flex justify-content-between mt-3">
-                    <span class="pl-2 text-muted small">&#8592; Continue Shopping</span>
+                    <span class="pl-2 text-muted small cursor" @click="hideCart()">&#8592; Continue Shopping</span>
                     <strong class="pr-5"><sup>$</sup> {{cartPrice}}</strong>
                 </div>
                 
             </div>
             <div class="checkout-second">
-                <button class="btn btn_checkout pull-right">Checkout</button>
+                <button class="btn btn_checkout pull-right" @click="place(cartPrice)" v-if="!orderCreating">Checkout</button>
+                <button class="btn btn_checkout pull-right" disabled v-if="orderCreating" >Procesing</button>
             </div> 
         </div>
     </div>
@@ -62,7 +63,28 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["removeItem"])
-    }
+        ...mapActions(["removeItem","placeOrder"]),
+        place(amount){
+            this.placeOrder(amount);
+        },
+        hideCart(){
+            this.active = false;
+            this.$router.push({name: 'Home'})
+        }
+    },
+    watch: {
+        createdData: function () {
+            if (this.createdData !== null && !this.orderCreating) {
+                this.$swal.fire({
+                    text: "Success, Order has been added.",
+                    icon: "success",
+                    position: "top-end",
+                    timer: 1000,
+            });
+
+        //this.$router.push({ name: "Products" });
+      }
+    },
+  },
 };
 </script>
