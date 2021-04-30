@@ -16,6 +16,9 @@ import './assets/css/style.css';
 const app = createApp(App);
 app.config.globalProperties.$http = Axios;
 app.config.globalProperties.$http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+app.config.globalProperties.$http.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+app.config.globalProperties.$http.defaults.headers.common['Access-Control-Expose-Headers'] = '*';
+app.config.globalProperties.$http.defaults.headers.common['Access-Control-Allow-Credentials'] = true;
 const token = localStorage.getItem('token')
 if (token) {
 	app.config.globalProperties.$http.defaults.headers.common['Authorization'] = 'bearer '+token;
