@@ -1,5 +1,8 @@
-# Vue Product Order System
+# Vue Product Order System 
 Vue Product Order System connecting with an API service. Manage product and orders, tracking order status.
+
+
+<img src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/order-system-wedevs.jpg">
 
 ## Project setup
 
@@ -33,5 +36,9 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/add-to-cart.jpg">
+<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/tracking-order.jpg">
+<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/orders-wedevs.jpg">
 
 Image & Design Credits: [weDevs](https://wedevs.com/)
