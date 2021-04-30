@@ -1,4 +1,5 @@
 <template>
+    
     <nav class="navbar navbar-expand navbar-light bg-light">
         <div class="d-flex container justify-content-between pl-4 pr-4">
             <router-link to="/" class="navbar-brand">

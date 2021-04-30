@@ -22,7 +22,7 @@
                         <span class="percent-20 small text-muted pt-3">
                             {{item.created_at}}
                         </span>
-                        <span class="percent-20 pt-2">
+                        <span class="percent-20 pt-2" @click="getDetails(item.id)" >
                             <span v-if="item.status == 'Delivered'" class="badge badge-success">Delivered</span>
                             <span v-if="item.status == 'Shipped'" class="badge badge-warning">Shipped</span>
                             <span v-if="item.status == 'Processing'" class="badge badge-danger">Processing</span>

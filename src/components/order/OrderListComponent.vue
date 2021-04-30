@@ -39,7 +39,7 @@
                       <td class="text-center">
                         <strong><sup>$</sup> {{ item.amount }}</strong>
                       </td>
-                      <td class="text-center">
+                      <td class="text-center" @click="getDetails(item.id)" >
                           <span v-if="item.status == 'Delivered'" class="badge badge-success">Delivered</span>
                             <span v-if="item.status == 'Shipped'" class="badge badge-warning">Shipped</span>
                             <span v-if="item.status == 'Processing'" class="badge badge-danger">Processing</span>
