@@ -1,4 +1,5 @@
 # Vue Product Order System
+Vue Product Order System connecting with an API service. Manage product and orders, tracking order status.
 
 ## Project setup
 
@@ -9,13 +10,14 @@ cp .env.example .env
 npm install
 ```
 ### API Endpoint
+
 Set API endpoint in .env
 ```
-VUE_APP_API_ENDPOINT=http://127.0.0.1:8000/api/v1/
+VUE_APP_API_ENDPOINT=api_endpoint such as http://localhost/test/
 ```
 
-Laravel Demo API: https://github.com/RakibDevs/php-order-api
 API Documentation: 
+https://documenter.getpostman.com/view/11223504/TzRLkAWw
 
 
 ### Compiles and hot-reloads for development
