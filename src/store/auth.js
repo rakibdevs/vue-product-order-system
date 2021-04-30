@@ -77,7 +77,11 @@ export default {
                     axios.defaults.headers.common['Authorization'] = 'bearer' +token;
                     commit('auth_success', user)
                     resolve(resp)
-                    router.push({name: 'Products'})
+                    if(user.role == 'admin'){
+                        router.push({name: 'Products'})
+                    }else{
+                        router.push({name: 'Home'})
+                    }
                 })
                 .catch(err => {
                     commit('auth_error', err)
@@ -87,8 +91,7 @@ export default {
             })
         },
         logout({commit}){
-            return new Promise((resolve, reject) => {
-                console.log(reject)
+            return new Promise((resolve) => {
                 commit('logout')
                 localStorage.removeItem('token')
                 localStorage.removeItem('user')
@@ -105,6 +108,7 @@ export default {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.status,
         isAdmin: state =>  state.role == 'admin',
-        isCustomer: state =>  state.role == 'customer'
+        isCustomer: state =>  state.role == 'customer',
+        user: state => state.user
     }
 }

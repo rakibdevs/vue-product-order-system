@@ -3,7 +3,9 @@
     <td class="text-center">
       <img v-if="product.image" loading="lazy" :src="baseUrl+product.image" :alt="product.title" width="50"  >
     </td>
+    <td>{{ product.sku }}</td>
     <td>{{ product.title }}</td>
+    <td>{{ product.category_name }}</td>
     <td class="text-center">
       <strong>{{ product.price }}</strong>
     </td>

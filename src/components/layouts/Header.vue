@@ -5,6 +5,11 @@
                 <img :src="`/images/weDevs-color-logo.png`" height="35"> | Products
             </router-link>
             <div class="navbar-nav">
+                <li class="nav-item" v-if="isLoggedIn">
+                    <router-link  to="" class="nav-link">
+                        {{user.name}} 
+                    </router-link>
+                </li>
                 <li class="nav-item" v-if="isAdmin">
                     <router-link  to="/products" class="nav-link">
                         Products 
@@ -57,6 +62,9 @@ export default {
         },
         isCustomer : function(){ 
             return this.$store.getters.isCustomer
+        },
+        user: function(){
+            return this.$store.getters.user
         }
     }
 };

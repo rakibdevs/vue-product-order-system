@@ -5,7 +5,7 @@
           <!-- <Form @submit="onSaveProduct" :validation-schema="schema"> -->
           <div class="row">
             <div class="col-6 ">
-                <div class="form-group">
+                <div class="form-group product-image-preview">
                     <div v-if="!temp_image">
                         <img src="/images/select_product.png" class="product-image-display"  />
                         
@@ -14,7 +14,11 @@
                         <img :src="temp_image" class="product-image-display" />
                         <button @click="removeImage">Remove image</button>
                     </div>
-                                    
+                            
+                    <div class="form-group mt-5 text-left">
+                        <label>Product Image:</label><br>
+                        <input  id="image" name="image" type="file" accept="image/*" @change="onImageChange" >
+                    </div>        
                     <ErrorMessage name="image" class="text-danger" />
                 </div>
             </div>
@@ -34,8 +38,17 @@
                       <ErrorMessage name="title" class="text-danger" />
                     </div>
                     <div class="form-group">
+                        <label>Categories</label>
+                        <select name="category_id" class="form-control" v-model="product.category_id">
+                          <option selected="selected">Select Category</option>
+                          <option v-for="(category, index) in categories" v-bind:value="category.id" :key="index">
+                            {{category.name}}
+                          </option>
+                        </select>
+                      </div>
+                    <div class="form-group">
 
-                      <label>Product Price:</label>
+                      <label>Unit Price:</label>
                       <Field
                         name="price"
                         type="number"
@@ -55,10 +68,7 @@
                        />
                       <ErrorMessage name="description" class="text-danger" />
                     </div>
-                    <div class="form-group">
-                        <label>Product Image:</label>
-                        <input  id="image" name="image" type="file" accept="image/*" @change="onImageChange" >
-                    </div>
+                    
                     <div class="form-group">
                         <router-link to="/products" class="btn btn-secondary mr-2"
                           >Cancel</router-link
@@ -104,16 +114,18 @@ export default {
     Form,
     ErrorMessage,
   },
-
-  computed: { ...mapGetters(["isCreating", "createdData"]) },
+  created: function () {
+    this.getCategories();
+  },
+  computed: { ...mapGetters(["isCreating", "createdData","categories"]) },
 
   methods: {
-    ...mapActions(["storeProduct"]),
+    ...mapActions(["storeProduct","getCategories"]),
     onSubmit() {
-        const { title, price, description, image } = this.product;
-
+        const { title, price, category_id, description, image } = this.product;
         this.storeProduct({
             title: title,
+            category_id: category_id,
             price: price,
             image: image,
             description: description

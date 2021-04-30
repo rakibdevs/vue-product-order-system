@@ -17,15 +17,7 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-       <div v-if="productsPaginatedData !== null" class="mt-2 mb-5">
-            <v-pagination
-              v-model="query.page"
-              :pages="productsPaginatedData.pagination.total_pages"
-              :range-size="2"
-              active-color="#DCEDFF"
-              @update:modelValue="getResults"
-            />
-        </div>
+       
     </div>
     
   </div>
@@ -34,7 +26,6 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import ProductCard from "./ProductCardComponent";
-import VPagination from "vue3-pagination";
 
 export default {
   data() {
@@ -47,7 +38,6 @@ export default {
   },
   components: {
     ProductCard,
-    VPagination,
   },
   computed: { ...mapGetters(["productList", "productsPaginatedData", "isLoading"]) },
 

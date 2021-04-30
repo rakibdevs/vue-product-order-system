@@ -5,13 +5,13 @@
         <h5 class="text-left mb-2">Manage Orders</h5>
       </div>
       <div class="col-2">
-        <input
+        <!-- <input
           type="text"
           class="form-control custom-form-control"
           placeholder="Search Orders..."
           @input="searchProducts"
           v-model="query.search"
-        />
+        /> -->
       </div>
     </div>
     <div class="row" >
@@ -31,7 +31,7 @@
               <tbody>
                   <tr v-for="(item, index) in ordersPaginatedData.data" :key="item.id">
                       <td>{{ index + 1 }}</td>
-                      <td class="text-center cursor" @click="getDetails(item.id)">
+                      <td class="text-center cursor text-success" @click="getDetails(item.id)" title="click to show details">
                           {{ item.order_code }}
                       </td>
                       <td>{{ item.created_at }}</td>
@@ -46,8 +46,8 @@
                       </td>
                       <td>{{ item.updated_at }}</td>
                       <td class="text-center">
-                        <button class="btn btn-sm btn-danger ml-2" @click="deleteitemModal(item.id)" title="Delete Product">
-                           <i class="fa fa-trash"></i>
+                        <button class="btn btn-sm btn-success ml-2" @click="getDetails(item.id)" title="View Product">
+                           <i class="fa fa-edit"></i>
                         </button>
                       </td>
                   </tr>

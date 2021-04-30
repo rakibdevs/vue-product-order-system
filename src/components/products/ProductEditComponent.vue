@@ -12,23 +12,29 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group">
+                    <div class="form-group product-image-preview">
                         <div v-if="!temp_image && product !== null && !isLoading">
 
-                            <img v-if="product.image" :src="product.image" class="product-image-display"  />
+                            <img v-if="product.image" :src="baseUrl+product.image" class="product-image-display"  />
                             <img  src="/images/select_product.png" class="product-image-display" v-else />
                             
                         </div>
                         <div class="product-image-display" v-else>
                             <img :src="temp_image" class="product-image-display" />
                         </div>
-                                        
+
+                        <!-- <div class="form-group mt-5 text-left">
+                            <label>Product Image:</label><br>
+                            <input  id="image" name="image" type="file" accept="image/*" @change="onImageChange" >
+                        </div>
+                                  -->       
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="product-form-card">
                         <h4 class="vue-card-title ">Add Product</h4>
                         <div v-if="product !== null && !isLoading">
+                            <input type="hidden" name="prev_image_src" :value="product.image" >
                             <input type="hidden" name="id" :value="product.id">
                             <div class="form-group">
                                 <label>Product Name:</label>
@@ -43,7 +49,16 @@
                                 <ErrorMessage name="title" class="text-danger" />
                               </div>
                               <div class="form-group">
-                                <label>Product Price:</label>
+                                <label>Categories</label>
+                                <select name="category_id" class="form-control" v-model="product.category_id">
+                                  <option>Select Category</option>
+                                  <option v-for="(category, index) in categories" v-bind:value="category.id" :key="index">
+                                    {{category.name}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label>Unit Price:</label>
                                 <Field
                                   name="price"
                                   type="number"
@@ -64,10 +79,7 @@
                                 />
                                 <ErrorMessage name="description" class="text-danger" />
                             </div>
-                            <div class="form-group">
-                                <label>Product Image:</label>
-                                <input  id="image" name="image" type="file" accept="image/*" @change="onImageChange" >
-                            </div>
+                            
                             <div class="form-group">
                               <router-link to="/products" class="btn btn-secondary mr-2"
                                 >Cancel</router-link
@@ -105,6 +117,7 @@ export default {
     return {
       id: null,
       temp_image: null,
+      baseUrl: process.env.VUE_APP_API_ENDPOINT,
     };
   },
   components: {
@@ -116,22 +129,25 @@ export default {
   created: function () {
     this.id = this.$route.params.id;
     this.fetchDetailProduct(this.id);
+    this.getCategories();
     
   },
 
-  computed: { ...mapGetters(["isUpdating", "updatedData", "product", "isLoading"]) },
+  computed: { ...mapGetters(["isUpdating", "updatedData", "product", "isLoading","categories"]) },
 
   methods: {
-    ...mapActions(["updateProduct", "updateProductInput", "fetchDetailProduct"]),
+    ...mapActions(["updateProduct", "updateProductInput", "fetchDetailProduct","getCategories"]),
     onSubmit() {
-      const { id, title, price, description, image } = this.product;
+      const { id, title, category_id, price, description, image, prev_image_src } = this.product;
 
         this.updateProduct({
             id: id,
+            category_id:category_id,
             title: title,
             price: price,
             image: image,
-            description: description
+            description: description,
+            prev_image_src : prev_image_src
         });
     },
     updateProductInputAction(e) {

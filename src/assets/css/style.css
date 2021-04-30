@@ -35,6 +35,7 @@ body{
     position: absolute;
     top: -45px;
     left: 50px;
+    max-width: 100px;
 }
 .coupon__product_single h2 {
     font-weight: 900;
@@ -231,11 +232,11 @@ body{
     font-weight: 600 !important;
 }
 .product-image-display{
-    width: 350px;
+    width: 250px;
 }
 .product-image-display img{
     width:100%;
-    max-height: 350px;
+    max-height: 250px;
     background-size: cover;
 }
 .product-form-card{
@@ -262,6 +263,7 @@ li.order-list-item{
     background: #fff;
     border-radius: 15px;
     margin-bottom: 5px;
+    box-shadow: 2px 2px 5px 1px #d1d1d1;
 }
 .order-step .fa.st{
     display: block;
@@ -270,3 +272,8 @@ li.order-list-item{
     color: #fff;
 }
 .delivery-status-active{color: #04cc04 !important}
+.product-image-preview{
+    border: 1px solid;
+    text-align: center;
+    padding: 40px;
+}

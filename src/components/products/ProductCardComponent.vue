@@ -12,7 +12,8 @@
                 </span>
             </span>
         </div> 
-        <button class="btn btn-sm claim__offer_btn" @click="addToCart(product)">Add to Cart</button>
+        <button v-if="isLoggedIn" class="btn btn-sm claim__offer_btn" @click="addToCart(product)">Add to Cart</button>
+        <a v-if="!isLoggedIn" class="btn btn-sm claim__offer_btn"  href="login">Add to Cart</a>
     </div>
 </template>
 
@@ -35,7 +36,7 @@ export default {
     }
   },
   computed: { 
-    ...mapGetters(["isDeleting", "deletedData"]) 
+    ...mapGetters(["isDeleting", "deletedData","isLoggedIn"]) 
   },
   methods: {
     ...mapActions(["deleteProduct", "fetchAllProducts"]),

@@ -1,27 +1,37 @@
 <template>
     <div class="container">
-        <h5 class="text-left mb-2">My Orders</h5>
         <div class="row" >
             <div class="col-sm-3">
-                
+                <div class="card">
+                    <div class="card-body">
+                        <strong class="mt-3">My Orders:</strong>
+                        <p>Tatal Order : <b>{{orders.length}}</b></p>
+                        <p>Tatal Amount : <b><sup>$</sup> {{totalAmount}}</b></p>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-9">
-                <ul>
+                
+                <ul class="m-0 p-0">
                     <li v-for="(item) in orders" :key="item.id" class="flex order-list-item">
-                        <span class="percent-40 cursor" @click="getDetails(item.id)">
-                            <strong>{{item.order_code}}</strong>
+                        <span class="percent-40 cursor" @click="getDetails(item.id)" title="CLick to see details">
+                            <strong>{{item.order_code}}</strong><br>
+                            <span class="tex-muted small text-muted text-italic">Last Update: {{item.updated_at}}</span>
 
                         </span>
-                        <span class="percent-30 small">
+                        <span class="percent-20 small text-muted pt-3">
                             {{item.created_at}}
                         </span>
-                        <span class="percent-20">
+                        <span class="percent-20 pt-2">
                             <span v-if="item.status == 'Delivered'" class="badge badge-success">Delivered</span>
                             <span v-if="item.status == 'Shipped'" class="badge badge-warning">Shipped</span>
                             <span v-if="item.status == 'Processing'" class="badge badge-danger">Processing</span>
                         </span>
-                        <span class="percent-10 text-right">
+                        <span class="percent-10 text-right pt-2">
                             <sup>$</sup> {{item.amount}}
+                        </span>
+                        <span class="percent-10 text-center pt-2">
+                            <i class="fa fa-eye cursor" @click="getDetails(item.id)" ></i>
                         </span>
                     </li>
                 </ul>
@@ -75,6 +85,15 @@ export default {
         if(this.order.status == 'Delivered') return 2;
         else if(this.order.status == 'Shipped') return 1;
         else return 0;
+    },
+    totalAmount(){
+        if (!this.orders) {
+            return 0;
+        }
+
+        return this.orders.reduce(function (total, v) {
+            return total + Number(v.amount);
+        }, 0);
     }
   },
   methods: {

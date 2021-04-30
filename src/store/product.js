@@ -10,7 +10,8 @@ const state = () => ({
     isUpdating              : false,
     updatedData             : null,
     isDeleting              : false,
-    deletedData             : null
+    deletedData             : null,
+    categories              : []
 })
 
 const getters = {
@@ -23,7 +24,8 @@ const getters = {
     createdData             : state => state.createdData,
     updatedData             : state => state.updatedData,
     isDeleting              : state => state.isDeleting,
-    deletedData             : state => state.deletedData
+    deletedData             : state => state.deletedData,
+    categories              : state => state.categories
 };
 
 const actions = {
@@ -93,6 +95,15 @@ const actions = {
             });
     },
 
+    async getCategories({ commit }) {
+        await axios.get(`${process.env.VUE_APP_API_ENDPOINT}categories`)
+            .then(res => {
+                commit('set_categories', res.data.data);
+            }).catch(err => {
+                console.log('error', err);
+            });
+    },
+
     // store image
     async storeProduct({ commit }, product) {
         const data = new FormData();
@@ -100,6 +111,7 @@ const actions = {
             data.append('image', product.image);
         }
         data.append('description', product.description);
+        data.append('category_id', product.category_id);
         data.append('title', product.title);
         data.append('price', product.price);
         commit('product_creating', true);
@@ -119,6 +131,8 @@ const actions = {
             data.append('image', product.image);
         }
         data.append('description', product.description);
+        data.append('prev_image_src', product.prev_image_src);
+        data.append('category_id', product.category_id);
         data.append('title', product.title);
         data.append('price', product.price);
         commit('product_updating', true);
@@ -199,6 +213,10 @@ const mutations = {
     product_deleting(state, isDeleting) {
         state.isDeleting = isDeleting
     },
+    set_categories(state, categories){
+        state.categories = categories
+
+    }
 
 }
 
