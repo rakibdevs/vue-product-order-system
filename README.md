@@ -18,6 +18,7 @@ Set API endpoint in .env
 ```
 VUE_APP_API_ENDPOINT=api_endpoint such as http://localhost/test/
 ```
+PHP API repository: https://github.com/RakibDevs/php-order-api
 
 API Documentation: 
 https://documenter.getpostman.com/view/11223504/TzRLkAWw
@@ -37,8 +38,8 @@ npm run build
 ```
 npm run lint
 ```
-<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/add-to-cart.jpg">
-<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/tracking-order.jpg">
-<img width="400" src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/orders-wedevs.jpg">
+<img  src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/add-to-cart.jpg">
+<img src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/tracking-order.jpg">
+<img src="https://github.com/RakibDevs/vue-product-order-system/blob/master/public/orders-wedevs.jpg">
 
 Image & Design Credits: [weDevs](https://wedevs.com/)
